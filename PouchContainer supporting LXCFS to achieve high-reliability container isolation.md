@@ -133,7 +133,7 @@ To simplify usage, the pouch create and run command lines provide parameters  `-
 
 After a period of using and testing, we found after lxcfs restarts, proc and cgroup will be rebuilt. That will cause a `connect failed` error when users access /proc in the container.
 
-In order to enhance the stability of LXCFS, in pull request:[https://github.com/alibaba/pouch/pull/885](https://github.com/alibaba/pouch/pull/885) ,refined the management method of LXCFS by system guarantee. In order to do that, use remote operation by adding ExecStartPost to lxcfs.service, traverse LXCFS container, and mount again in the container.
+In order to enhance the stability of LXCFS, in pull request:[https://github.com/alibaba/pouch/pull/885](https://github.com/alibaba/pouch/pull/885) ,refined the management method of LXCFS by systemd guarantee. In order to do that, use remote operation by adding ExecStartPost to lxcfs.service, traverse LXCFS container, and mount again in the container.
 
 ## Summary
 
