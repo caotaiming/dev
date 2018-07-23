@@ -138,3 +138,6 @@ In order to enhance the stability of LXCFS, in pull request:[https://github.com/
 ## Summary
 
 PouchContainer supports LXCFS implement view isolation for /proc filesystems within containers which will reduce the original tool chain as well as operation and maintenance habits in the process of enterprise storage application containerization, and speed up the process. PouchContainer will support enterprises strongly for the smooth transition from traditional virtualization to container virtualization.
+
+Reference
+https://github.com/pouchcontainer/blog/blob/master/blog-cn/PouchContainer-%E6%94%AF%E6%8C%81-LXCFS-%E5%AE%9E%E7%8E%B0%E9%AB%98%E5%8F%AF%E9%9D%A0%E5%AE%B9%E5%99%A8%E9%9A%94%E7%A6%BB.md
