@@ -101,8 +101,8 @@ Cached:                4 kB
 Using LXCFS started container and reading in-container /proc files to obtain relative information in container.
 
 ### Business Applications
-Configuration for most applications which rely heavily on the operation system, the startup program of applications needs to obtain information about the system's memory, CPU, and so on.
-When the '/proc' file in the container does not accurately reflect the resources condition of the container, it will cause significant effects of the application.
+For most applications which are relied heavily on the operation system, the startup program of applications needs to obtain information about the system's memory, CPU, and so on.
+When the '/proc' file in the container does not accurately reflect the resources condition of the container, it will cause significant effects to above applications.
 
 For example, when some Java applications dynamically allocate the stack size of the running program by checking /proc/meminfo and the container memory limit is less than the host memory, program startup failure will appear because of failed memory allocation.
 
@@ -113,7 +113,7 @@ If the above information cannot be accurately obtained in the container, the DPD
 ## PouchContainer integrated LXCFS
 PouchContainer supports LXCFS from version 0.1.0, please check this instance:[https://github.com/alibaba/pouch/pull/502](https://github.com/alibaba/pouch/pull/502) 
 
-In short, when the container starts, it will through -v mount the LXCFS mount point on the host  /var/lib/lxc/lxcfs/proc/  to the virtual filesystem directory  /proc inside the container. 
+In short, when the container starts, it will through -v mount the mount point of LXCFS on the host  /var/lib/lxc/lxcfs/proc/  to the virtual filesystem directory  /proc inside the container. 
 
 At this point you can see in the /proc directory of the container, some proc files include meminfo, uptime, swaps, stat, diskstats, cpuinfo and so on.
 The parameters are as follows:
@@ -129,12 +129,12 @@ The parameters are as follows:
 -v /var/lib/lxc/lxcfs/proc/cpuinfo:/proc/cpuinfo
 ```
 
-To simplify usage, the pouch create and run command lines provide parameters  `--enableLxcfs`. If specify above parameters when creating the container, you can omit the complicated `-v` parameter.
+To simplify usage, the pouch create and run command lines provide parameters  `--enableLxcfs`. If specify above parameters when you are creating the container, you can omit the complicated `-v` parameters.
 
 After a period of using and testing, we found after lxcfs restarts, proc and cgroup will be rebuilt. That will cause a `connect failed` error when users access /proc in the container.
 
-In order to enhance the stability of LXCFS, in pull request:[https://github.com/alibaba/pouch/pull/885](https://github.com/alibaba/pouch/pull/885，refined the management method of LXCFS to systemd guarantee. In order to do that, use remote operation by adding ExecStartPost to lxcfs.service, traverse LXCFS container, and mount again in the container.
+In order to enhance the stability of LXCFS, in pull request:[https://github.com/alibaba/pouch/pull/885](https://github.com/alibaba/pouch/pull/885) ,refined the management method of LXCFS by system guarantee. In order to do that, use remote operation by adding ExecStartPost to lxcfs.service, traverse LXCFS container, and mount again in the container.
 
 ## Summary
 
-PouchContainer supports LXCFS implement view isolation for /proc filesystems within containers which will reduce the original tool chain as well as operation and maintenance habits in the process of enterprise storage application containerization, and speed up the process. PouchContainer will support strongly for the smooth transition of enterprises from traditional virtualization to container virtualization.
+PouchContainer supports LXCFS implement view isolation for /proc filesystems within containers which will reduce the original tool chain as well as operation and maintenance habits in the process of enterprise storage application containerization, and speed up the process. PouchContainer will support enterprises strongly for the smooth transition from traditional virtualization to container virtualization.
